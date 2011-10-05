@@ -1,0 +1,59 @@
+uOneCrypt - v0.1 [BETA]
+=======================
+##################################################################
+## uOneCrypt is NOT AN OFFICIAL UBUNTU SOFTWARE.  This software ##
+## is to be used at YOUR OWN RISK. I do not take any            ##
+## responsibility for any damage or any data loss.              ##
+##################################################################
+
+This project is aimed to allow use Ubuntu One File storage using any OS and
+allowing to crypt data in your local OS using your private key.
+
+This is a wrapper of the Ubuntu REST API:
+https://one.ubuntu.com/developer/files/store_files/cloud/ 
+All you need is to fill the config file [uOne.cfg] and execute uOneCrypt.py
+
+uOne.cfg has de following parameters:
+
+[auth]
+uone_user = your@email.address
+uone_passwd = your@Ubuntu_one.password
+key = passphrase (will be digested with sha256 to generate your private key)
+
+- Software dependences are only Python >=2.6 and PyCrypto 
+- Ecryption only works for files stored under /CRYPT
+
+Each directory unter /CRYPT will have a .ToC file containing the names 
+of the files and directories.
+
+DON'T MODIFY ANY FILE INSIDE /CRYPT if you want to keep the filesystem consitent.
+
+
+Features/TODOs [ - Pending, # Done ] 
+====================================
+
+[-] Fuse module for OSX/Linux/Windows
+[-] Recursive upload and download in directories
+[-] Autocompletion of directories and files
+[-] Exception control and checking
+[-] Comments in the code
+[-] Python 3 compatibility
+[-] Progress (percentage) information
+[-] File Recovery tool for inconsistent CryptedFS
+[#] Basic operations on file and directories
+[#] Information encryption under /CRYPT directory
+[#] Path encryption under /CRYPT directory
+[#] FS Caching
+
+Known Problems
+==============
+
+-	PUT request
+	[https://one.ubuntu.com/developer/files/store_files/cloud/#put_apifile_storagev1-directorycontent_path-filenameext-or-apifile_storagev1-filecontent_path]
+	has a timeout problem, so that if you have a slow upload transfer rate
+	your files won't be uploaded.  My upload rate transfer is 0.49Mbps
+	(aprox 60Kb/s) and the largest file I can upload has a size of ~50-60 MB.
+
+
+
+
